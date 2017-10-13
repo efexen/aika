@@ -1,0 +1,23 @@
+Aika Timesheets
+
+<%= link "Sign up", to: user_path(@conn, :new) %>
+
+<%= form_for @conn, session_path(@conn, :create), [as: :login], fn f -> %>
+  <div>
+    <label>
+      Email
+      <%= text_input f, :email %>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Password
+      <%= password_input f, :password %>
+    </label>
+  </div>
+
+  <div>
+    <%= submit "Login" %>
+  </div>
+<% end %>

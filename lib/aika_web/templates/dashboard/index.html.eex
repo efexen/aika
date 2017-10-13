@@ -1,0 +1,26 @@
+<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
+
+<h3>Your week</h3>
+
+<%= for {date, name} <- this_week() do %>
+  <div>
+    <h4><%= name %></h4>
+    <%= form_for @conn, time_entry_path(@conn, :create, date), [as: :entry], fn f -> %>
+      <%= for entry <- date_entries(date, @entries) do %>
+        <div>
+          <%= entry.description %> - <%= formatted_duration(entry.duration) %> hours -- <%= link "Delete", to: time_entry_path(@conn, :delete, entry), method: :delete %>
+        </div>
+      <% end %>
+        <label>
+          Description
+          <%= text_input f, :description %>
+        </label>
+        <label>
+          Time in hours
+          <%= text_input f, :time %>
+        </label>
+        <%= submit "Add" %>
+    <% end %>
+    <hr />
+  </div>
+<% end %>

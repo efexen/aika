@@ -1,0 +1,11 @@
+<h4>Hey <%= username(@user) %> You've been invited to join <%= @user.organisation.name %></h4>
+
+Set new password to continue
+
+<%= form_for @conn, invite_path(@conn, :accept, @invite_id), [as: :user], fn f -> %>
+  <label>
+    Password:
+    <%= password_input f, :password %>
+  </label>
+  <%= submit "Change Password" %>
+<% end %>

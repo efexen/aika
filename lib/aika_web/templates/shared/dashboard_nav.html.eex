@@ -1,0 +1,9 @@
+<h2>Welcome <%= AikaWeb.SharedView.username(@conn) %></h2>
+
+<%= link "Timesheet", to: dashboard_path(@conn, :index) %>
+&nbsp;
+<%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete) %>
+&nbsp;
+<%= if admin?(@conn) do %>
+  <%= link "Manager Users", to: user_path(@conn, :index) %>
+<% end %>

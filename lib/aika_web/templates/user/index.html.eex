@@ -1,0 +1,30 @@
+<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
+
+<h3>Users for <%= @organisation.name %></h3>
+
+<table>
+  <thead>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Invite Token</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= for user <- @users do %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= role_name(user.role) %></td>
+        <td><%= user.token %></td>
+        <td><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for @conn, user_path(@conn, :invite), [as: :invite], fn f -> %>
+  <label>
+    Email
+    <%= text_input f, :email %>
+  </label>
+  <%= submit "Invite" %>
+<% end %>
