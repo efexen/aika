@@ -1,0 +1,15 @@
+<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
+
+<h3>Viewing user <%= username(@show_user) %></h3>
+
+<%= for {date, name} <- this_week() do %>
+  <div>
+    <h4><%= name %></h4>
+      <%= for entry <- date_entries(date, @show_user.time_entries) do %>
+        <div>
+          <%= entry.description %> - <%= formatted_duration(entry.duration) %> hours
+        </div>
+      <% end %>
+    <hr />
+  </div>
+<% end %>

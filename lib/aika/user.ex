@@ -11,6 +11,7 @@ defmodule Aika.User do
     field :token, :string
 
     belongs_to :organisation, Aika.Organisation
+    has_many :time_entries, Aika.TimeEntry
 
     timestamps()
   end

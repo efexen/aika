@@ -1,9 +1,6 @@
 defmodule AikaWeb.InviteView do
   use AikaWeb, :view
 
-  def username(user) do
-    user.email
-    |> String.split("@")
-    |> hd()
-  end
+  defdelegate username(user), to: AikaWeb.UserView
+
 end

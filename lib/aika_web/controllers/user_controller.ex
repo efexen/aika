@@ -1,6 +1,7 @@
 defmodule AikaWeb.UserController do
   use AikaWeb, :controller
   alias Aika.Registration
+  import AikaWeb.DashboardView, only: [beginning_of_week: 0, end_of_week: 0]
 
   def index(conn, _params) do
     organisation = conn.assigns[:user].organisation
@@ -8,6 +9,13 @@ defmodule AikaWeb.UserController do
     users = Aika.Organisation.Queries.users(organisation)
 
     render conn, users: users, organisation: organisation
+  end
+
+  def show(conn, %{ "id" => id }) do
+    organisation = conn.assigns[:user].organisation
+    user = Aika.User.Queries.user_show(organisation, id, beginning_of_week(), end_of_week())
+
+    render conn, show_user: user
   end
 
   def new(conn, _params) do

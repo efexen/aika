@@ -45,6 +45,7 @@ defmodule AikaWeb.Router do
     get "/users", UserController, :index
     post "/users/invite", UserController, :invite
     delete "/users/:id", UserController, :delete
+    get "/users/:id", UserController, :show
   end
 
   # Other scopes may use custom stacks.

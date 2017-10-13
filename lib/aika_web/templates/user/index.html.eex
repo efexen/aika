@@ -4,6 +4,7 @@
 
 <table>
   <thead>
+    <th>Name</th>
     <th>Email</th>
     <th>Role</th>
     <th>Invite Token</th>
@@ -12,6 +13,7 @@
   <tbody>
     <%= for user <- @users do %>
       <tr>
+        <td><%= link username(user), to: user_path(@conn, :show, user) %></td>
         <td><%= user.email %></td>
         <td><%= role_name(user.role) %></td>
         <td><%= user.token %></td>

@@ -1,6 +1,7 @@
 defmodule Aika.User.Queries do
+  import Ecto.Query
 
-  alias Aika.{User, Repo, Organisation}
+  alias Aika.{User, Repo, Organisation, TimeEntry}
 
   def user_with_organisation(nil), do: {:error, nil}
   def user_with_organisation(id) do
@@ -20,6 +21,15 @@ defmodule Aika.User.Queries do
   def for_invite(invite) do
     Repo.get_by(User, token: invite)
     |> Repo.preload(:organisation)
+  end
+
+  def user_show(organisation, id, start_date, end_date) do
+    query = from u in User,
+            where: u.organisation_id == ^organisation.id and u.id == ^id
+    Repo.one(query)
+    |> Repo.preload(time_entries: from(te in TimeEntry,
+        where: te.date >= ^start_date and te.date <= ^end_date
+      ))
   end
 
 end
