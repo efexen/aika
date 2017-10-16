@@ -1,7 +1,7 @@
-defmodule Aika.TimeEntry do
+defmodule Aika.Timesheets.TimeEntry do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Aika.TimeEntry
+  alias Aika.Timesheets.TimeEntry
 
 
   schema "time_entries" do
@@ -9,7 +9,7 @@ defmodule Aika.TimeEntry do
     field :description, :string
     field :duration, :integer
 
-    belongs_to :user, Aika.User
+    belongs_to :user, Aika.Accounts.User
 
     timestamps()
   end

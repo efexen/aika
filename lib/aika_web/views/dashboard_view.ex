@@ -3,8 +3,8 @@ defmodule AikaWeb.DashboardView do
 
   def this_week() do
     Timex.Interval.new(
-      from: beginning_of_week,
-      until: end_of_week
+      from: beginning_of_week(),
+      until: end_of_week()
     ) |> Enum.map(&formatted_date/1)
   end
 

@@ -1,10 +1,12 @@
-defmodule Aika.Organisation do
+defmodule Aika.Accounts.Organisation do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Aika.Organisation
+  alias Aika.Accounts.Organisation
 
   schema "organisations" do
     field :name, :string
+
+    has_many :users, Aika.Accounts.User
 
     timestamps()
   end
