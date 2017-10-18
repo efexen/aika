@@ -5,5 +5,5 @@
 <%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete) %>
 &nbsp;
 <%= if admin?(@conn) do %>
-  <%= link "Manager Users", to: user_path(@conn, :index) %>
+  <%= link "Manage Users", to: user_path(@conn, :index) %>
 <% end %>
