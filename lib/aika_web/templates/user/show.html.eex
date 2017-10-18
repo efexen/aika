@@ -1,5 +1,3 @@
-<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
-
 <h3>Viewing user <%= username(@show_user) %></h3>
 
 <%= for {date, name} <- this_week() do %>

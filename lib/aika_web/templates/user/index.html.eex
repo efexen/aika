@@ -1,5 +1,3 @@
-<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
-
 <h3>Users for <%= @organisation.name %></h3>
 
 <table>

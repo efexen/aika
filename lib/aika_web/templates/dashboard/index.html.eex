@@ -1,26 +1,28 @@
-<%= render AikaWeb.SharedView, "dashboard_nav.html", conn: @conn %>
-
-<h3>Your week</h3>
+<h3>This week</h3>
 
 <%= for {date, name} <- this_week() do %>
-  <div>
+  <div class="timesheet-date-container">
     <h4><%= name %></h4>
-    <%= form_for @conn, time_entry_path(@conn, :create, date), [as: :entry], fn f -> %>
+
+    <div class="timesheet-entries-container">
       <%= for entry <- date_entries(date, @entries) do %>
-        <div>
-          <%= entry.description %> - <%= formatted_duration(entry.duration) %> hours -- <%= link "Delete", to: time_entry_path(@conn, :delete, entry), method: :delete %>
+        <div class="timesheet-entry">
+          <span class="badge badge-primary"><%= formatted_duration(entry.duration) %> Hours</span>
+          <%= entry.description %>
+          <%= link "Delete", to: time_entry_path(@conn, :delete, entry), method: :delete, class: "btn btn-sm btn-danger float-right" %>
         </div>
       <% end %>
-        <label>
-          Description
-          <%= text_input f, :description %>
-        </label>
-        <label>
-          Time in hours
-          <%= text_input f, :time %>
-        </label>
-        <%= submit "Add" %>
+    </div>
+
+    <%= form_for @conn, time_entry_path(@conn, :create, date), [as: :entry, class: "form-inline"], fn f -> %>
+      <div class="form-group">
+        <%= text_input f, :description, placeholder: "Description", class: "form-control form-control-sm" %>
+      </div>
+      <div class="form-group">
+        <%= text_input f, :time, placeholder: "Hours", class: "form-control form-control-sm hour-entry" %>
+      </div>
+      <%= submit "Add", class: "btn btn-sm btn-outline-success" %>
     <% end %>
-    <hr />
+
   </div>
 <% end %>

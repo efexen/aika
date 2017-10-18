@@ -1,30 +1,26 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col">
+    <h2>Sign up</h2>
 
-<%= form_for @conn, user_path(@conn, :create), [as: :registration], fn f -> %>
+    <%= form_for @conn, user_path(@conn, :create), [as: :registration], fn f -> %>
 
-  <div>
-    <label>
-      Organisation name
-      <%= text_input f, :org_name %>
-    </label>
+      <div class="form-group">
+        <%= label f, :org_name, "Organisation" %>
+        <%= text_input f, :org_name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= label f, :email, "Email" %>
+        <%= text_input f, :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= label f, :password, "Password" %>
+        <%= password_input f, :password, class: "form-control" %>
+      </div>
+
+      <%= submit "Sign up", class: "btn btn-success" %>
+
+    <% end %>
   </div>
-
-  <div>
-    <label>
-      Email
-      <%= text_input f, :email %>
-    </label>
-  </div>
-
-  <div>
-    <label>
-      Password
-      <%= password_input f, :password %>
-    </label>
-  </div>
-
-  <div>
-    <%= submit "Sign up" %>
-  </div>
-
-<% end %>
+</div>

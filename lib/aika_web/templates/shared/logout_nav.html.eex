@@ -1,0 +1,12 @@
+<%= form_for @conn, session_path(@conn, :create), [as: :login, class: "form-inline"], fn f -> %>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <%= link "Sign up", to: user_path(@conn, :new), class: "nav-link" %>
+    </li>
+  </ul>
+  &nbsp;
+  &nbsp;
+  <%= text_input f, :email, placeholder: "Email", class: "form-control form-control-sm" %>
+  <%= password_input f, :password, placeholder: "Password", class: "form-control form-control-sm" %>
+  <%= submit "Login", class: "btn btn-sm btn-outline-success" %>
+<% end %>
