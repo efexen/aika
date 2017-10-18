@@ -1,9 +1,9 @@
-defmodule Aika.Entry do
-  alias Aika.{TimeEntry, Repo}
-  import Ecto.Query
+defmodule Aika.Timesheets do
+  alias Aika.Repo
+  alias Aika.Timesheets.{TimeEntry, Queries}
 
   def create(user, date, description, time) do
-    Aika.TimeEntry.changeset(%{
+    TimeEntry.changeset(%{
       user: user,
       date: parse_date(date),
       description: description,
@@ -12,11 +12,10 @@ defmodule Aika.Entry do
   end
 
   def dashboard_entries_for(user, start_date, end_date) do
-    query = from te in TimeEntry,
-              where: te.user_id == ^user.id
-              and te.date >= ^start_date
-              and te.date <= ^end_date
-    Repo.all(query)
+    user
+    |> Queries.time_entries_for_user()
+    |> Queries.time_entries_between(start_date, end_date)
+    |> Repo.all()
   end
 
   def remove(user, id) do

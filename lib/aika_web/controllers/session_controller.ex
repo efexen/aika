@@ -1,10 +1,10 @@
 defmodule AikaWeb.SessionController do
   use AikaWeb, :controller
 
-  alias Aika.User.Queries
+  alias Aika.Accounts
 
   def create(conn, %{"login" => %{"email" => email, "password" => password}}) do
-    case Queries.id_for_email_and_password(email, password) do
+    case Accounts.id_for_email_and_password(email, password) do
       {:ok, id} ->
         conn
         |> put_session(:current_user, id)

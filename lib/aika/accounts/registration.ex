@@ -1,6 +1,7 @@
-defmodule Aika.Registration do
+defmodule Aika.Accounts.Registration do
 
-  alias Aika.{Repo, Organisation, User}
+  alias Aika.Repo
+  alias Aika.Accounts.{Organisation, User}
 
   def create_new(params) do
     case create_organisation(params["org_name"]) do
@@ -18,12 +19,12 @@ defmodule Aika.Registration do
       token: Ecto.UUID.generate(),
       organisation: org,
       role: 0
-    }) |> Repo.insert
+    }) |> Repo.insert()
   end
 
   def set_password(user, password) do
     User.password_changeset(user, %{ password: password, token: nil })
-    |> Repo.update
+    |> Repo.update()
   end
 
   defp create_admin_user(%{ "email" => email, "password" => password }, org) do
@@ -32,12 +33,12 @@ defmodule Aika.Registration do
       password: password,
       organisation: org,
       role: 1
-    }) |> Repo.insert
+    }) |> Repo.insert()
   end
 
   defp create_organisation(name) do
     Organisation.changeset(%{name: name})
-    |> Repo.insert
+    |> Repo.insert()
   end
 
 end
