@@ -22,6 +22,13 @@ defmodule AikaWeb.DashboardView do
     Enum.filter(entries, &(isodate(&1.date) == date))
   end
 
+  def day_duration(date, entries) do
+    date_entries(date, entries)
+    |> Enum.map(&(&1.duration))
+    |> Enum.sum
+    |> formatted_duration
+  end
+
   def formatted_duration(time) do
     time / 60
   end

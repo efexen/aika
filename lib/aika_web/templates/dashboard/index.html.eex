@@ -2,7 +2,7 @@
 
 <%= for {date, name} <- this_week() do %>
   <div class="timesheet-date-container">
-    <h4><%= name %></h4>
+    <h4><%= name %> - <%= day_duration(date, @entries) %> hours</h4>
 
     <div class="timesheet-entries-container">
       <%= for entry <- date_entries(date, @entries) do %>
