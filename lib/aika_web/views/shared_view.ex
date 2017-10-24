@@ -2,9 +2,7 @@ defmodule AikaWeb.SharedView do
   use AikaWeb, :view
 
   def username(conn) do
-    conn.assigns[:user].email
-    |> String.split("@")
-    |> hd()
+    AikaWeb.UserView.username(conn.assigns[:user])
   end
 
   def admin?(conn) do

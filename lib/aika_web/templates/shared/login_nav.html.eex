@@ -1,17 +1,15 @@
-<div>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <%= link "Timesheet", to: dashboard_path(@conn, :index), class: "nav-link" %>
-    </li>
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <%= link "Timesheet", to: dashboard_path(@conn, :index), class: "nav-link" %>
+  </li>
 
-    <%= if admin?(@conn) do %>
-      <li class="nav-item">
-        <%= link "Manage Users", to: user_path(@conn, :index), class: "nav-link" %>
-      </li>
-    <% end %>
-
+  <%= if admin?(@conn) do %>
     <li class="nav-item">
-      <%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete), class: "nav-link" %>
+      <%= link "Manage Users", to: user_path(@conn, :index), class: "nav-link" %>
     </li>
-  </ul>
-</div>
+  <% end %>
+
+  <li class="nav-item">
+    <%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete), class: "nav-link" %>
+  </li>
+</ul>

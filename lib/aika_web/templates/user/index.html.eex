@@ -1,6 +1,6 @@
-<h3>Users for <%= @organisation.name %></h3>
+<h3><%= @organisation.name %> Users</h3>
 
-<table>
+<table class="table table-striped">
   <thead>
     <th>Name</th>
     <th>Email</th>
@@ -15,16 +15,18 @@
         <td><%= user.email %></td>
         <td><%= role_name(user.role) %></td>
         <td><%= user.token %></td>
-        <td><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete %></td>
+        <td><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, class: "btn btn-sm btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= form_for @conn, user_path(@conn, :invite), [as: :invite], fn f -> %>
-  <label>
-    Email
-    <%= text_input f, :email %>
-  </label>
-  <%= submit "Invite" %>
-<% end %>
+<div class="row">
+  <div class="col">
+    <%= form_for @conn, user_path(@conn, :invite), [as: :invite, class: "form-inline"], fn f -> %>
+      <%= text_input f, :email, class: "form-control form-control-sm", placeholder: "email@company.com" %>
+      &nbsp;
+      <%= submit "Invite", class: "btn btn-outline-success btn-sm" %>
+    <% end %>
+  </div>
+</div>

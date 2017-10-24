@@ -12,6 +12,7 @@ defmodule AikaWeb.UserView do
     user.email
     |> String.split("@")
     |> hd()
+    |> String.capitalize
   end
 
   defdelegate this_week(), to: AikaWeb.DashboardView
