@@ -1,6 +1,10 @@
-<h3>This week</h3>
+<h3>
+  <%= link "<", to: dashboard_path(@conn, :index, date: previous_week(@date)) %>
+  <%= week_title(@date) %>
+  <%= link ">", to: dashboard_path(@conn, :index, date: next_week(@date)) %>
+</h3>
 
-<%= for {date, name} <- this_week() do %>
+<%= for {date, name} <- week_commencing(@date) do %>
   <div class="timesheet-date-container">
     <h4><%= name %> - <%= day_duration(date, @entries) %> hours</h4>
 

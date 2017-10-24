@@ -1,7 +1,7 @@
 defmodule AikaWeb.UserController do
   use AikaWeb, :controller
   alias Aika.Accounts
-  import AikaWeb.DashboardView, only: [beginning_of_week: 0, end_of_week: 0]
+  import AikaWeb.DashboardView, only: [beginning_of_week: 1, end_of_week: 1]
 
   def index(conn, _params) do
     organisation = conn.assigns[:user].organisation
@@ -11,11 +11,19 @@ defmodule AikaWeb.UserController do
     render conn, users: users, organisation: organisation
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id, "date" => date}) do
     organisation = conn.assigns[:user].organisation
-    user = Accounts.user_show(organisation, id, beginning_of_week(), end_of_week())
 
-    render conn, show_user: user
+    parsed_date = parse_date(date)
+    start_date = beginning_of_week(parsed_date)
+    end_date = end_of_week(start_date)
+
+    user = Accounts.user_show(organisation, id, start_date, end_date)
+
+    render conn, show_user: user, date: start_date, entries: user.time_entries
+  end
+  def show(conn, %{"id" => id}) do
+    show(conn, %{ "id" => id, "date" => Timex.today()})
   end
 
   def new(conn, _params) do
@@ -58,4 +66,10 @@ defmodule AikaWeb.UserController do
     errors
     |> Enum.map(fn {field, error} -> "#{field} #{elem(error, 0)}" end)
   end
+
+  defp parse_date(date) when is_binary(date) do
+    Timex.parse!(date, "%F", :strftime)
+  end
+  defp parse_date(date), do: date
+
 end

@@ -1,13 +1,23 @@
-<h3>Viewing user <%= username(@show_user) %></h3>
+<h3>
+  <%= link "<", to: user_path(@conn, :show, @show_user, date: previous_week(@date)) %>
+  <%= username(@show_user) %>
+  -
+  <%= week_title(@date) %>
+  <%= link ">", to: user_path(@conn, :show, @show_user, date: next_week(@date)) %>
+</h3>
 
-<%= for {date, name} <- this_week() do %>
-  <div>
-    <h4><%= name %></h4>
-      <%= for entry <- date_entries(date, @show_user.time_entries) do %>
-        <div>
-          <%= entry.description %> - <%= formatted_duration(entry.duration) %> hours
+<%= for {date, name} <- week_commencing(@date) do %>
+  <div class="timesheet-date-container">
+    <h4><%= name %> - <%= day_duration(date, @entries) %> hours</h4>
+
+    <div class="timesheet-entries-container">
+      <%= for entry <- date_entries(date, @entries) do %>
+        <div class="timesheet-entry">
+          <span class="badge badge-primary"><%= formatted_duration(entry.duration) %> Hours</span>
+          <%= entry.description %>
         </div>
       <% end %>
-    <hr />
+    </div>
+
   </div>
 <% end %>

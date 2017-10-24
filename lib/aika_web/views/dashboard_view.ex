@@ -1,21 +1,29 @@
 defmodule AikaWeb.DashboardView do
   use AikaWeb, :view
 
-  def this_week() do
+  def week_commencing(date) do
+    start_date = beginning_of_week(date)
+
     Timex.Interval.new(
-      from: beginning_of_week(),
-      until: end_of_week()
+      from: start_date,
+      until: end_of_week(start_date)
     ) |> Enum.map(&formatted_date/1)
   end
 
-  def beginning_of_week do
-    Timex.today()
-    |> Timex.beginning_of_week()
+  def previous_week(date) do
+    Timex.shift(date, weeks: -1)
+    |> isodate()
   end
 
-  def end_of_week do
-    beginning_of_week()
-    |> Timex.shift(days: 5)
+  def next_week(date) do
+    Timex.shift(date, weeks: 1)
+    |> isodate()
+  end
+
+  defdelegate beginning_of_week(date), to: Timex
+
+  def end_of_week(date) do
+    Timex.shift(date, days: 5)
   end
 
   def date_entries(date, entries) do
@@ -33,6 +41,18 @@ defmodule AikaWeb.DashboardView do
     time / 60
   end
 
+  def week_title(date) do
+    week_no = week_number(date)
+    case week_no == week_number(Timex.today) do
+      true -> "This week"
+      _ -> "Week #{week_no}"
+    end
+  end
+
+  def isodate(date) do
+    Timex.format!(date, "%F", :strftime)
+  end
+
   defp formatted_date(date) do
     {
       isodate(date),
@@ -40,8 +60,8 @@ defmodule AikaWeb.DashboardView do
     }
   end
 
-  defp isodate(date) do
-    Timex.format!(date, "%F", :strftime)
+  defp week_number(date) do
+    Timex.format!(date, "{Wiso}")
   end
 
 end
