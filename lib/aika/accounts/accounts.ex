@@ -59,4 +59,15 @@ defmodule Aika.Accounts do
     end
   end
 
+  def set_admin(org, id) do
+    user = Repo.get(User, id)
+
+    if user.organisation_id == org.id do
+      user
+      |> Ecto.Changeset.change
+      |> Ecto.Changeset.put_change(:role, 1)
+      |> Repo.update!
+    end
+  end
+
 end

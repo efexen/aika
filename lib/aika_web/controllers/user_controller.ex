@@ -62,6 +62,12 @@ defmodule AikaWeb.UserController do
     redirect(conn, to: user_path(conn, :index))
   end
 
+  def set_admin(conn, %{"id" => id}) do
+    organisation = conn.assigns[:user].organisation
+    Accounts.set_admin(organisation, id)
+    redirect(conn, to: user_path(conn, :index))
+  end
+
   defp format_error(errors) do
     errors
     |> Enum.map(fn {field, error} -> "#{field} #{elem(error, 0)}" end)

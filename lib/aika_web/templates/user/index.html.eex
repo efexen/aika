@@ -15,7 +15,13 @@
         <td><%= user.email %></td>
         <td><%= role_name(user.role) %></td>
         <td><%= user.token %></td>
-        <td><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        <td>
+          <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, class: "btn btn-sm btn-danger" %>
+
+          <%= if role_name(user.role) != "Admin" do %>
+            <%= link "Make Admin", to: user_path(@conn, :set_admin, user), method: :post, class: "btn btn-sm btn-primary" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
