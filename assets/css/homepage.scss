@@ -1,0 +1,87 @@
+$brand-colour: #663399;
+$whiteish: #fdfdfd;
+
+html {
+  background: url(/images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Droid Serif', serif;
+  color: $whiteish;
+}
+
+html, body {
+  height: 100%;
+  display: grid;
+  overflow: hidden;
+}
+
+.content {
+  margin: auto;
+}
+
+.inner {
+  margin-left: -64px;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 64px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-family: 'Droid Serif', serif;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+.underline {
+  height: 7px;
+  background: $brand-colour;
+  width: 112px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.button {
+  padding: 15px 50px;
+  display: inline-block;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  cursor: pointer;
+  border: 2px solid $brand-colour;
+  color: $whiteish;
+}
+
+.button-brand {
+  background: $brand-colour;
+}
+
+.button-alt {
+  background: transparent;
+}
+
+input {
+  outline: 0;
+  color: $whiteish;
+  background: rgba(255, 255, 255, 0.1);
+  width: 325px;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 2px;
+}
+
+p.source a {
+  color: $whiteish;
+  font-weight: lighter;
+  text-align: center;
+  display: block;
+  font-size: 14px;
+}

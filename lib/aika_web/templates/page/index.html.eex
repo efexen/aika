@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="inner">
+    <h1>AIKASHEETS</h1>
+    <div class="underline"></div>
+    <h3>Open-source timesheets</h3>
+
+    <div>
+      <%= form_for @conn, session_path(@conn, :create), [as: :login], fn f -> %>
+        <div>
+          <%= text_input f, :email, placeholder: "Email" %>
+        </div>
+        <div>
+          <%= password_input f, :password, placeholder: "Password" %>
+        </div>
+        <div>
+          <%= submit "Login", class: "button button-brand" %>
+          &nbsp;
+          <%= link "Sign up", to: user_path(@conn, :new), class: "button button-alt" %>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="source"><a href="https://github.com/efexen/aika" target="_blank">Contribute &amp; view source in Github</a></p>
+
+  </div>
+</div>

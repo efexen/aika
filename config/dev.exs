@@ -34,7 +34,7 @@ config :aika, AikaWeb.Endpoint,
 config :aika, AikaWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg|scss)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/aika_web/views/.*(ex)$},
       ~r{lib/aika_web/templates/.*(eex)$}
