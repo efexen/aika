@@ -32,6 +32,7 @@ defmodule Aika.Timesheets do
     |> Timex.to_date()
   end
 
+  defp parse_time("." <> time), do: parse_time("0." <> time)
   defp parse_time(time) when is_binary(time) do
     case String.contains?(time, ".") do
       true -> parse_time(String.to_float(time))
