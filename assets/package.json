@@ -4,6 +4,8 @@
   "scripts": {
     "deploy": "webpack --config webpack.prod.js",
     "watch": "node_modules/.bin/webpack --watch --colors --config webpack.dev.js"
+    "deploy": "brunch build --production",
+    "watch": "brunch watch --stdin"
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
@@ -11,6 +13,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "brunch": "2.10.9",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
