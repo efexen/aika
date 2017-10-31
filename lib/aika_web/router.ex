@@ -11,6 +11,7 @@ defmodule AikaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug AikaWeb.ApiAuthPlug
   end
 
   pipeline :authenticated do
