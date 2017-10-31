@@ -34,7 +34,7 @@ defmodule Aika.Accounts do
     end
   end
 
-  def users_for_invite(invite) do
+  def user_for_invite(invite) do
     User
     |> Repo.get_by(token: invite)
     |> Repo.preload(:organisation)

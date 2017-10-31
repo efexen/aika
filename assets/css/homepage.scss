@@ -85,3 +85,17 @@ p.source a {
   display: block;
   font-size: 14px;
 }
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+
+  &.alert-error {
+    background: #EF4836;
+    color: #fdfdfd;
+  }
+}
