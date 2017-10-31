@@ -9,6 +9,7 @@ defmodule Aika.Accounts.User do
     field :role, :integer
     field :password, :string, virtual: true
     field :token, :string
+    field :api_token, :binary
 
     belongs_to :organisation, Aika.Accounts.Organisation
     has_many :time_entries, Aika.Timesheets.TimeEntry
@@ -24,6 +25,7 @@ defmodule Aika.Accounts.User do
     |> validate_required([:email, :password, :role])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
+    |> generate_api_token()
     |> hash_password()
     |> put_assoc(:organisation, attrs.organisation)
     |> unique_constraint(:email)
@@ -37,9 +39,21 @@ defmodule Aika.Accounts.User do
     |> hash_password()
   end
 
+  def api_token_changeset(%User{} = user, attrs \\ %{}) do
+    user
+    |> cast(attrs, [:api_token])
+    |> generate_api_token()
+    |> Aika.Repo.update()
+  end
+
   defp hash_password(changeset) do
     digest = get_change(changeset, :password) |> Bcrypt.hash_pwd_salt
     put_change(changeset, :password_digest, digest)
   end
 
+  defp generate_api_token(changeset) do
+    changeset
+    |> put_change(:api_token, Ecto.UUID.generate)
+  end
 end
+
