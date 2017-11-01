@@ -36,8 +36,10 @@ defmodule AikaWeb.InviteController do
         conn
         |> put_session(:current_user, user.id)
         |> redirect(to: dashboard_path(conn, :index))
-      {:error, user} ->
-        render conn, user: user, invite_id: id
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Password must be at least 8 characters")
+        |> render "show.html", user: user, invite_id: id
     end
   end
 
