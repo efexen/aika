@@ -1,4 +1,4 @@
-<ul class="navbar-nav">
+<ul class="navbar-nav mr-auto">
   <li class="nav-item">
     <%= link "Timesheet", to: dashboard_path(@conn, :index), class: "nav-link" %>
   </li>
@@ -9,7 +9,8 @@
     </li>
   <% end %>
 
-  <li class="nav-item">
-    <%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete), class: "nav-link" %>
-  </li>
 </ul>
+
+<div class="navbar-nav">
+  <%= link "Logout #{username(@conn)}", to: session_path(@conn, :delete), class: "nav-item nav-link" %>
+</div>
