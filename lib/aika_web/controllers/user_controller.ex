@@ -43,19 +43,6 @@ defmodule AikaWeb.UserController do
     end
   end
 
-  def invite(conn, %{"invite" => %{"email" => email}}) do
-    org = conn.assigns[:user].organisation
-    case Accounts.create_invite(org, email) do
-      {:ok, _user} ->
-        conn
-        |> redirect(to: user_path(conn, :index))
-      {:error, _ } ->
-        conn
-        |> put_flash(:error, "Error inviting")
-        |> redirect(to: user_path(conn, :index))
-    end
-  end
-
   def delete(conn, %{"id" => id}) do
     organisation = conn.assigns[:user].organisation
     Accounts.remove_user(organisation, id)
