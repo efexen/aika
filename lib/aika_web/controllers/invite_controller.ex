@@ -2,6 +2,22 @@ defmodule AikaWeb.InviteController do
   use AikaWeb, :controller
   alias Aika.Accounts
 
+  def create(conn, %{"invite" => %{"email" => email}}) do
+    org = conn.assigns[:user].organisation
+    case Accounts.create_invite(org, email) do
+      {:ok, _user} ->
+        conn
+        |> redirect(to: user_path(conn, :index))
+      {:error, changeset } ->
+        error_messages = Enum.map(changeset.errors, fn({field,{msg,_}}) -> "#{field} #{msg}" end)
+                        |> Enum.join(" ")
+
+        conn
+        |> put_flash(:error, "Error inviting: #{ error_messages}")
+        |> redirect(to: user_path(conn, :index))
+    end
+  end
+
   def show(conn, %{ "id" => id }) do
     case Accounts.user_for_invite(id) do
       nil ->

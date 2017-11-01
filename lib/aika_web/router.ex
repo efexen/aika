@@ -43,7 +43,7 @@ defmodule AikaWeb.Router do
     pipe_through :admin
 
     get "/users", UserController, :index
-    post "/users/invite", UserController, :invite
+    post "/invites", InviteController, :create
     delete "/users/:id", UserController, :delete
     get "/users/:id", UserController, :show
     post "/users/:id/set_admin", UserController, :set_admin

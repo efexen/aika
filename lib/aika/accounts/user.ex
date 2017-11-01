@@ -26,6 +26,7 @@ defmodule Aika.Accounts.User do
     |> validate_length(:password, min: 8)
     |> hash_password()
     |> put_assoc(:organisation, attrs.organisation)
+    |> unique_constraint(:email)
   end
 
   def password_changeset(%User{} = user, attrs) do
