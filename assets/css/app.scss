@@ -1,3 +1,5 @@
+@import 'colours';
+
 .main-container {
   margin-top: 1em;
 }
@@ -33,5 +35,5 @@
   font-family: 'Oswald', sans-serif;
 }
 .navbar-custom-bg {
-  background-color: #663399;
+  background-color: $brand-colour;
 }
