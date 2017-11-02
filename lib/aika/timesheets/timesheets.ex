@@ -1,5 +1,5 @@
 defmodule Aika.Timesheets do
-  alias Aika.Repo
+  alias Aika.{Repo, Duration}
   alias Aika.Timesheets.{TimeEntry, Queries}
 
   def create(user, date, description, time) do
@@ -7,7 +7,7 @@ defmodule Aika.Timesheets do
       user: user,
       date: parse_date(date),
       description: description,
-      duration: parse_time(time)
+      duration: Duration.hours_to_minutes(time)
     }) |> Repo.insert!
   end
 
@@ -31,15 +31,5 @@ defmodule Aika.Timesheets do
     |> Timex.parse!("%F", :strftime)
     |> Timex.to_date()
   end
-
-  defp parse_time("." <> time), do: parse_time("0." <> time)
-  defp parse_time(time) when is_binary(time) do
-    case String.contains?(time, ".") do
-      true -> parse_time(String.to_float(time))
-      false -> parse_time(String.to_integer(time))
-    end
-  end
-
-  defp parse_time(number), do: round(number * 60)
 
 end

@@ -47,6 +47,9 @@ defmodule AikaWeb.Router do
     delete "/users/:id", UserController, :delete
     get "/users/:id", UserController, :show
     post "/users/:id/set_admin", UserController, :set_admin
+
+    get "/organisation/edit", OrganisationController, :edit
+    resources "/organisation", OrganisationController, only: [:update]
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,6 @@
+<li class="nav-item">
+  <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+</li>
+<li class="nav-item">
+  <%= link "Settings", to: organisation_path(@conn, :edit), class: "nav-link" %>
+</li>

@@ -4,9 +4,7 @@
   </li>
 
   <%= if admin?(@conn) do %>
-    <li class="nav-item">
-      <%= link "Manage Users", to: user_path(@conn, :index), class: "nav-link" %>
-    </li>
+    <%= render AikaWeb.SharedView, "admin_nav.html", conn: @conn %>
   <% end %>
 
 </ul>
