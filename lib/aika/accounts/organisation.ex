@@ -5,6 +5,7 @@ defmodule Aika.Accounts.Organisation do
 
   schema "organisations" do
     field :name, :string
+    field :target_hours, :integer
 
     has_many :users, Aika.Accounts.User
 
@@ -15,7 +16,8 @@ defmodule Aika.Accounts.Organisation do
   def changeset(attrs), do: changeset(%Organisation{}, attrs)
   def changeset(%Organisation{} = organisation, attrs) do
     organisation
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :target_hours])
+    |> validate_required([:name, :target_hours])
   end
+
 end

@@ -1,0 +1,11 @@
+<h3>Settings for <%= @org.name %></h3>
+
+<%= form_for @changeset, organisation_path(@conn, :update, @org), fn f -> %>
+
+  <div class="form-group">
+    <%= label f, :target_hours, "Target daily hours" %>
+    <%= text_input f, :target_hours, class: "form-control", value: formatted_target_hours(@org) %>
+  </div>
+
+  <%= submit "Save", class: "btn btn-outline-success" %>
+<% end %>
