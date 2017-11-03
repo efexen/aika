@@ -50,6 +50,8 @@ defmodule AikaWeb.Router do
 
     get "/organisation/edit", OrganisationController, :edit
     resources "/organisation", OrganisationController, only: [:update]
+
+    get "/overview", DashboardController, :overview
   end
 
   # Other scopes may use custom stacks.

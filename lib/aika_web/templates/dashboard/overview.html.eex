@@ -1,0 +1,21 @@
+<h3>Overview</h3>
+
+<table class="table table-striped">
+  <thead>
+    <th></th>
+    <%= for {_date, name} <- week_commencing(@date) do %>
+      <th><%= name %></th>
+    <% end %>
+  </thead>
+  <tbody>
+    <%= for {{name, id}, entries} <- user_stats(@overview_stats) do %>
+      <tr>
+        <td><%= link name, to: user_path(@conn, :show, id) %></td>
+        <%= for {date, _name} <- week_commencing(@date) do %>
+          <td>
+            <%= user_date_stat(date, entries) %>
+          </td>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>

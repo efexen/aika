@@ -53,6 +53,25 @@ defmodule AikaWeb.DashboardView do
     Timex.format!(date, "%F", :strftime)
   end
 
+  def user_stats(overview_stats) do
+    Enum.chunk_by(overview_stats, fn({_, id, _, _}) -> id end)
+    |> Enum.map(fn (entries) ->
+      {_, id, email, _} = entries |> hd()
+
+      name = AikaWeb.UserView.username(%{ email: email})
+
+      {{name, id}, entries}
+    end)
+  end
+
+  def user_date_stat(date, entries) do
+    date = Timex.parse!(date, "%F", :strftime) |> Timex.to_date
+
+    Enum.find(entries, {0,0,0,0}, &(elem(&1, 0) == date))
+    |> elem(3)
+    |> formatted_duration()
+  end
+
   defp formatted_date(date) do
     {
       isodate(date),

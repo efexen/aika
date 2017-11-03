@@ -1,4 +1,7 @@
 <li class="nav-item">
+  <%= link "Overview", to: dashboard_path(@conn, :overview), class: "nav-link" %>
+</li>
+<li class="nav-item">
   <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
 </li>
 <li class="nav-item">

@@ -18,6 +18,12 @@ defmodule Aika.Timesheets do
     |> Repo.all()
   end
 
+  def overview_stats_for(org, start_date, end_date) do
+    org
+    |> Queries.overview_stats_for(start_date, end_date)
+    |> Repo.all()
+  end
+
   def remove(user, id) do
     entry = Repo.get(TimeEntry, id)
 
