@@ -1,4 +1,5 @@
 defmodule Aika.Accounts do
+  import Ecto.Query, warn: false
 
   alias Aika.Accounts.{User, Registration}
   alias Aika.Timesheets.TimeEntry
@@ -47,7 +48,8 @@ defmodule Aika.Accounts do
   end
 
   def users(org) do
-    org = Repo.preload(org, :users)
+    user_query = from u in User, order_by: u.email
+    org = Repo.preload(org, users: user_query)
     org.users
   end
 
