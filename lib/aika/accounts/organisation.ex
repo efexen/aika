@@ -17,7 +17,7 @@ defmodule Aika.Accounts.Organisation do
   def changeset(%Organisation{} = organisation, attrs) do
     organisation
     |> cast(attrs, [:name, :target_hours])
-    |> validate_required([:name, :target_hours])
+    |> validate_required([:name])
   end
 
 end
