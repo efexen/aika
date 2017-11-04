@@ -1,4 +1,8 @@
-<h3>Overview</h3>
+<h3>
+  <%= link "<", to: dashboard_path(@conn, :overview, date: previous_week(@date)) %>
+  Overview - <%= week_title(@date) %>
+  <%= link ">", to: dashboard_path(@conn, :overview, date: next_week(@date)) %>
+</h3>
 
 <table class="table table-striped">
   <thead>
