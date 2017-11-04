@@ -22,7 +22,7 @@ defmodule AikaWeb.DashboardController do
     {start_date, end_date} = week(date)
 
     overview_stats = Timesheets.overview_stats_for(org, start_date, end_date)
-    render conn, overview_stats: overview_stats, date: start_date, users: users
+    render conn, overview_stats: overview_stats, date: start_date, users: users, organisation: org
   end
   def overview(conn, _), do: overview(conn, %{"date" => Timex.today()})
 

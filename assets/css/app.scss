@@ -37,3 +37,16 @@
 .navbar-custom-bg {
   background-color: $brand-colour;
 }
+
+.overview-table {
+
+  th, td {
+    text-align: center;
+  }
+
+  span.progress_indicator {
+    width: 100%;
+    display: block;
+    border-bottom: 5px solid;
+  }
+}

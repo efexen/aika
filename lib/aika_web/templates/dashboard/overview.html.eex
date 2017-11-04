@@ -4,7 +4,7 @@
   <%= link ">", to: dashboard_path(@conn, :overview, date: next_week(@date)) %>
 </h3>
 
-<table class="table table-striped">
+<table class="table table-striped overview-table">
   <thead>
     <th></th>
     <%= for {_date, name} <- week_commencing(@date) do %>
@@ -18,7 +18,9 @@
         <td><%= link username(user), to: user_path(@conn, :show, user) %></td>
         <%= for {date, _name} <- week_commencing(@date) do %>
           <td>
-            <%= user_date_stat(date, user.id, @overview_stats) %>
+            <span class="progress_indicator" style="<%= user_date_completion(date, user.id, @organisation, @overview_stats)%>">
+              <%= user_date_stat(date, user.id, @overview_stats) %>
+            </span>
           </td>
         <% end %>
         <td><%= user_week_total(user.id, @overview_stats) %></td>

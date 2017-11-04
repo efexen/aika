@@ -70,6 +70,29 @@ defmodule AikaWeb.DashboardView do
     |> formatted_duration()
   end
 
+  def user_date_completion(date, user_id, organisation, overview_stats) do
+    target_hours = formatted_duration(organisation.target_hours)
+    user_hours = user_date_stat(date, user_id, overview_stats) 
+
+    ratio_completed = case user_hours do
+      0.0 ->
+        0
+      duration ->
+        duration / target_hours
+    end
+
+    color = case ratio_completed do
+      ratio when ratio <= 0.4 ->
+        "#EC644B"
+      ratio when ratio <= 0.8 ->
+        "#FABE58"
+      _ ->
+        "#26A65B"
+    end
+
+    "border-color: #{color}"
+  end
+
   defdelegate username(user), to: AikaWeb.UserView
 
   defp formatted_date(date) do
