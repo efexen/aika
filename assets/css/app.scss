@@ -45,6 +45,10 @@
     width: 15%;
   }
 
+  td:first-child {
+    text-align: left;
+  }
+
   span.progress_indicator {
     width: 100%;
     display: block;
