@@ -18,8 +18,8 @@ defmodule Aika.Timesheets.Queries do
       join: u in User,
       on: te.user_id == u.id,
       where: u.organisation_id == ^org.id and te.date >= ^start_date and te.date <= ^end_date,
-      group_by: [te.user_id, u.email, te.date],
-      select: {te.date, te.user_id, u.email, sum(te.duration)}
+      group_by: [te.user_id, te.date],
+      select: {te.date, te.user_id, sum(te.duration)}
   end
 
 end

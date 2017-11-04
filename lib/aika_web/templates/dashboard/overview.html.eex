@@ -6,16 +6,19 @@
     <%= for {_date, name} <- week_commencing(@date) do %>
       <th><%= name %></th>
     <% end %>
+    <th>Total</th>
   </thead>
   <tbody>
-    <%= for {{name, id}, entries} <- user_stats(@overview_stats) do %>
+    <%= for user <- @users do %>
       <tr>
-        <td><%= link name, to: user_path(@conn, :show, id) %></td>
+        <td><%= link username(user), to: user_path(@conn, :show, user) %></td>
         <%= for {date, _name} <- week_commencing(@date) do %>
           <td>
-            <%= user_date_stat(date, entries) %>
+            <%= user_date_stat(date, user.id, @overview_stats) %>
           </td>
         <% end %>
+        <td><%= user_week_total(user.id, @overview_stats) %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

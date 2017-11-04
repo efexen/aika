@@ -1,7 +1,7 @@
 defmodule AikaWeb.DashboardController do
   use AikaWeb, :controller
 
-  alias Aika.Timesheets
+  alias Aika.{Timesheets, Accounts}
   import AikaWeb.DashboardView, only: [beginning_of_week: 1, end_of_week: 1]
 
   def index(conn, %{ "date" => date }) do
@@ -17,10 +17,12 @@ defmodule AikaWeb.DashboardController do
   def overview(conn, %{ "date" => date}) do
     org = conn.assigns[:user].organisation
 
+    users = Accounts.users(org)
+
     {start_date, end_date} = week(date)
 
     overview_stats = Timesheets.overview_stats_for(org, start_date, end_date)
-    render conn, overview_stats: overview_stats, date: start_date
+    render conn, overview_stats: overview_stats, date: start_date, users: users
   end
   def overview(conn, _), do: overview(conn, %{"date" => Timex.today()})
 

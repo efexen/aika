@@ -22,6 +22,9 @@ defmodule Aika.Timesheets do
     org
     |> Queries.overview_stats_for(start_date, end_date)
     |> Repo.all()
+    |> Enum.reduce(%{}, fn({date, user_id, duration}, stats) ->
+      Map.update(stats, user_id, %{date => duration}, &(Map.put(&1, date, duration)))
+    end)
   end
 
   def remove(user, id) do
