@@ -20,7 +20,7 @@ defmodule AikaWeb.OrganisationController do
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Error updating settings")
-        |> render "edit.html", org: org, changeset: changeset
+        |> render("edit.html", org: org, changeset: changeset)
     end
   end
 
