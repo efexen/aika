@@ -22,7 +22,7 @@ defmodule Aika.Accounts.User do
     user
     |> cast(attrs, [:email, :role, :password, :token])
     |> validate_required([:email, :password, :role])
-    |> validate_format(:email, ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
     |> hash_password()
     |> put_assoc(:organisation, attrs.organisation)
