@@ -6,17 +6,9 @@ defmodule Aika.Accounts do
   alias Aika.Timesheets.Queries, as: TimesheetsQueries
   alias Aika.Repo
 
-  def create_admin(params) do
-    Registration.create_new(params)
-  end
-
-  def create_invite(org, email) do
-    Registration.invite(org, email)
-  end
-
-  def set_password(user, password) do
-    Registration.set_password(user, password)
-  end
+  defdelegate create_admin(params), to: Registration, as: :create_new
+  defdelegate create_invite(org, email), to: Registration, as: :invite
+  defdelegate set_password(user, password), to: Registration
 
   def user_with_organisation(nil), do: {:error, nil}
   def user_with_organisation(id) do

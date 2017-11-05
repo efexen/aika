@@ -42,7 +42,8 @@ defmodule Aika.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:ex_machina, "~> 2.1", only: :test}
     ]
   end
 
