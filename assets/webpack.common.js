@@ -1,6 +1,6 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const path = require("path");
+const Path = require("path");
 
 module.exports = {
   entry: {
@@ -8,7 +8,7 @@ module.exports = {
     homepage: "./js/homepage.js"
   },
   output: {
-    path: path.resolve(__dirname, "../priv/static"),
+    path: Path.resolve(__dirname, "../priv/static"),
     filename: "js/[name].js"
   },
 
@@ -55,7 +55,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("css/[name].css"),
     new CopyWebpackPlugin([
-      {from: "./static", to: path.resolve(__dirname, "../priv/static")}
+      {from: "./static", to: Path.resolve(__dirname, "../priv/static")}
     ])
   ]
 };
