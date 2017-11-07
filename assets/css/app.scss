@@ -29,6 +29,12 @@
   background: #f0f0f0;
   border: 1px solid #d8cccc;
   border-radius: 5px;
+  margin-top: 3px;
+
+  & .btn {
+    margin-top: -3px;
+  }
+
 }
 
 .navbar-brand {
