@@ -1,2 +1,3 @@
-./node_modules/.bin/webpack --config webpack.prod.js
+NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.prod.js
+cd ..
 mix phoenix.digest
