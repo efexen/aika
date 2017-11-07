@@ -1,0 +1,99 @@
+html {
+  background: url(/images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Droid Serif', serif;
+  color: #fdfdfd;
+}
+
+html,
+body {
+  height: 100%;
+  display: grid;
+  overflow: hidden;
+}
+
+.content {
+  margin: auto;
+}
+
+.inner {
+  margin-left: -64px;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 64px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-family: 'Droid Serif', serif;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+.underline {
+  height: 7px;
+  background: #663399;
+  width: 112px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.button {
+  padding: 15px 50px;
+  display: inline-block;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  cursor: pointer;
+  border: 2px solid #663399;
+  color: #fdfdfd;
+}
+
+.button-brand {
+  background: #663399;
+}
+
+.button-alt {
+  background: transparent;
+}
+
+input {
+  outline: 0;
+  color: #fdfdfd;
+  background: rgba(255, 255, 255, 0.1);
+  width: 325px;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 2px;
+}
+
+p.source a {
+  color: #fdfdfd;
+  font-weight: lighter;
+  text-align: center;
+  display: block;
+  font-size: 14px;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.alert.alert-error {
+  background: #EF4836;
+  color: #fdfdfd;
+}
