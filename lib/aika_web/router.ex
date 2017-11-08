@@ -52,6 +52,8 @@ defmodule AikaWeb.Router do
     resources "/organisation", OrganisationController, only: [:update]
 
     get "/overview", DashboardController, :overview
+
+    resources "/categories", CategoryController, only: [:index, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
