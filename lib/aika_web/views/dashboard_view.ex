@@ -72,7 +72,7 @@ defmodule AikaWeb.DashboardView do
 
   def user_date_completion(date, user_id, organisation, overview_stats) do
     target_hours = formatted_duration(organisation.target_hours)
-    user_hours = user_date_stat(date, user_id, overview_stats) 
+    user_hours = user_date_stat(date, user_id, overview_stats)
 
     ratio_completed = case user_hours do
       0.0 ->

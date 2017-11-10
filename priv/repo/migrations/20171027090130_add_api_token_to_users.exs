@@ -3,7 +3,7 @@ defmodule Aika.Repo.Migrations.AddApiTokenToUsers do
 
   def change do
     alter table(:users) do
-      add :api_token, :binary
+      add :api_token, :string
     end
   end
 end

@@ -4,8 +4,6 @@
   "scripts": {
     "deploy": "webpack --config webpack.prod.js",
     "watch": "node_modules/.bin/webpack --watch --colors --config webpack.dev.js"
-    "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin"
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",

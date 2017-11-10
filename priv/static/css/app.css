@@ -57,3 +57,12 @@
   display: block;
   border-bottom: 5px solid;
 }
+
+.api-token {
+  font-family: monospace;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30em;
+  line-height: 50%;
+}

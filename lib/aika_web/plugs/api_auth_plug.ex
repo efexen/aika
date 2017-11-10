@@ -1,21 +1,20 @@
 defmodule AikaWeb.ApiAuthPlug do
   import Plug.Conn
-  import Phoenix.Controller
   alias Aika.{Repo, Accounts.User}
 
   def init(default), do: default
 
   def call(conn, _) do
-    %{"api_token" => api_token, "user_id" => user_id} = conn.params
-
-    user = Repo.get(User, user_id)
-
-    case user && user.api_token == api_token do
-      true -> assign(conn, :user, user)
+    with user_id        <- conn.params["user_id"],
+         api_token      <- conn.params["api_token"],
+         user           <- Repo.get(User, user_id),
+         user_api_token <- user && user.api_token,
+         true           <- api_token == user_api_token do
+      assign(conn, :user, user)
+    else
       _ ->
         conn
-        |> put_status(401)
-        |> text("401 Unauthorized")
+        |> send_resp(401, "unauthorized")
         |> halt()
     end
   end

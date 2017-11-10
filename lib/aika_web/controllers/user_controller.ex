@@ -1,6 +1,6 @@
 defmodule AikaWeb.UserController do
   use AikaWeb, :controller
-  alias Aika.{Accounts, Accounts.User}
+  alias Aika.{Accounts}
   import AikaWeb.DashboardView, only: [beginning_of_week: 1, end_of_week: 1]
 
   def index(conn, _params) do
@@ -55,10 +55,9 @@ defmodule AikaWeb.UserController do
     redirect(conn, to: user_path(conn, :index))
   end
 
-  def generate_api_token(conn, %{"id" => id}) do
-    # TODO
+  def generate_api_token(conn, _) do
     conn.assigns[:user]
-    |> User.api_token_changeset()
+    |> Accounts.create_api_token!()
 
     redirect(conn, to: dashboard_path(conn, :index))
   end

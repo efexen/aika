@@ -28,15 +28,6 @@
       <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
     <% end %>
 
-    <div class="api-token">
-      <%= if @user.api_token do %>
-        <p>api token: <%= @user.api_token %></p>
-        <p><%= link "Regenerate Token", to: user_path(@conn, :generate_api_token, @user.id)  %></p>
-      <% else %>
-        <p><%= link "Generate API Token", to: user_path(@conn, :generate_api_token, @user.id)  %></p>
-      <% end %>
-    </div>
-
     <div class="container main-container">
       <%= render @view_module, @view_template, assigns %>
     </div>

@@ -47,7 +47,7 @@ defmodule AikaWeb.Router do
     post "/invites", InviteController, :create
     delete "/users/:id", UserController, :delete
     get "/users/:id", UserController, :show
-    get "/users/:id/generate_api_token", UserController, :generate_api_token
+    post "/users/generate_api_token", UserController, :generate_api_token
     post "/users/:id/set_admin", UserController, :set_admin
 
     get "/organisation/edit", OrganisationController, :edit
@@ -56,7 +56,6 @@ defmodule AikaWeb.Router do
     get "/overview", DashboardController, :overview
   end
 
-  # Other scopes may use custom stacks.
   scope "/api", AikaWeb do
     pipe_through :api
 

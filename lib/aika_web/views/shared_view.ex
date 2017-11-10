@@ -14,4 +14,10 @@ defmodule AikaWeb.SharedView do
   end
   def nav_template(_), do: "logout_nav.html"
 
+  def api_token_button(conn, text) do
+    content_tag :p,
+      button(text,
+        to: user_path(conn, :generate_api_token),
+        class: "btn btn-sm btn-outline-success")
+  end
 end

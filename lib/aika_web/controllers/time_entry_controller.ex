@@ -5,9 +5,16 @@ defmodule AikaWeb.TimeEntryController do
 
   def create(conn, %{ "date" => date, "entry" => %{ "description" => description, "time" => time }}) do
     user = conn.assigns[:user]
-    Timesheets.create(user, date, description, time)
+    entry = Timesheets.create(user, date, description, time)
 
-    redirect conn, to: dashboard_path(conn, :index, date: date)
+    case get_format(conn) do
+      "json" ->
+        conn
+        |> put_status(201)
+        |> render(%{entry: entry})
+      "html" ->
+        redirect conn, to: dashboard_path(conn, :index, date: date)
+    end
   end
 
   def delete(conn, %{ "id" => id }) do

@@ -30,3 +30,5 @@
 
   </div>
 <% end %>
+
+<%= render AikaWeb.SharedView, "api_toolbox.html", conn: @conn, user: @user %>

@@ -10,7 +10,7 @@ defmodule AikaWeb.DashboardController do
     {start_date, end_date} = week(date)
 
     entries = Timesheets.dashboard_entries_for(user, start_date, end_date)
-    render conn, entries: entries, date: start_date, user: user
+    render conn, entries: entries, date: start_date
   end
   def index(conn, _), do: index(conn, %{"date" => Timex.today()})
 

@@ -64,4 +64,9 @@ defmodule Aika.Accounts do
     end
   end
 
+  def create_api_token!(user) do
+    user
+    |> User.api_token_changeset()
+    |> Repo.update()
+  end
 end
