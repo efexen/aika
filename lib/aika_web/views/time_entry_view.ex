@@ -6,7 +6,7 @@ defmodule AikaWeb.TimeEntryView do
       id: entry.id,
       date: entry.date,
       description: entry.description,
-      duration: entry.description
+      duration: entry.duration
     }
 
     json |> Poison.encode!

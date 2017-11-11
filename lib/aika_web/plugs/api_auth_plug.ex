@@ -4,18 +4,18 @@ defmodule AikaWeb.ApiAuthPlug do
 
   def init(default), do: default
 
-  def call(conn, _) do
-    with user_id        <- conn.params["user_id"],
-         api_token      <- conn.params["api_token"],
-         user           <- Repo.get(User, user_id),
-         user_api_token <- user && user.api_token,
-         true           <- api_token == user_api_token do
+  def call(%{params: %{"user_id" => user_id, "api_token" => api_token}} = conn, _) do
+    if user = Repo.get_by(User, [id: user_id, api_token: api_token]) do
       assign(conn, :user, user)
     else
-      _ ->
-        conn
-        |> send_resp(401, "unauthorized")
-        |> halt()
+      unauthorized(conn)
     end
+  end
+  def call(conn, _), do: unauthorized(conn)
+
+  defp unauthorized(conn) do
+    conn
+    |> send_resp(401, "unauthorized")
+    |> halt()
   end
 end
