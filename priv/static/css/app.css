@@ -1,5 +1,6 @@
 .main-container {
   margin-top: 1em;
+  min-height: calc(100vh - 100px);
 }
 
 .timesheet-date-container {
@@ -56,4 +57,18 @@
   width: 100%;
   display: block;
   border-bottom: 5px solid;
+}
+
+.api-token {
+  position: fixed;
+  background: #fff;
+  font-family: monospace;
+  bottom: 10px;
+  right: 10px;
+  width: 30em;
+  line-height: 50%;
+  height: 100px;
+  padding: 10px;
+  margin: 0 0 10px 0;
+  border-radius: 3px;
 }

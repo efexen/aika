@@ -23,7 +23,8 @@ defmodule Aika.Accounts.Registration do
   end
 
   def set_password(user, password) do
-    User.password_changeset(user, %{ password: password, token: nil })
+    user
+    |> User.password_changeset(%{ password: password, token: nil })
     |> Repo.update()
   end
 

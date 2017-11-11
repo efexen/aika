@@ -1,0 +1,9 @@
+<div class="api-token">
+  <%= if @user && @user.api_token do %>
+    <p>api_token: <%= @user.api_token %></p>
+    <p>user_id: <%= @user.id %></p>
+    <%= api_token_button(@conn, "Regenerate token") %>
+  <% else %>
+    <%= api_token_button(@conn, "Generate API token") %>
+  <% end %>
+</div>

@@ -60,8 +60,13 @@ defmodule Aika.Accounts do
       user
       |> Ecto.Changeset.change
       |> Ecto.Changeset.put_change(:role, 1)
-      |> Repo.update!
+      |> Repo.update!()
     end
   end
 
+  def create_api_token!(user) do
+    user
+    |> User.api_token_changeset()
+    |> Repo.update!()
+  end
 end

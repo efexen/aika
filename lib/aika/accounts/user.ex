@@ -9,6 +9,7 @@ defmodule Aika.Accounts.User do
     field :role, :integer
     field :password, :string, virtual: true
     field :token, :string
+    field :api_token, :string
 
     belongs_to :organisation, Aika.Accounts.Organisation
     has_many :time_entries, Aika.Timesheets.TimeEntry
@@ -37,9 +38,19 @@ defmodule Aika.Accounts.User do
     |> hash_password()
   end
 
+  def api_token_changeset(%User{} = user) do
+    user
+    |> change()
+    |> generate_api_token()
+  end
+
+  def generate_api_token(changeset) do
+    put_change changeset, :api_token, Ecto.UUID.generate()
+  end
+
   defp hash_password(changeset) do
     digest = get_change(changeset, :password) |> Bcrypt.hash_pwd_salt
     put_change(changeset, :password_digest, digest)
   end
-
 end
+
