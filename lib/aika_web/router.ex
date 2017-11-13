@@ -39,6 +39,7 @@ defmodule AikaWeb.Router do
     get "/dashboard", DashboardController, :index
 
     post "/entries/:date", TimeEntryController, :create
+    post "/users/generate_api_token", UserController, :generate_api_token
     delete "/entries/:id", TimeEntryController, :delete
 
     pipe_through :admin
@@ -47,7 +48,6 @@ defmodule AikaWeb.Router do
     post "/invites", InviteController, :create
     delete "/users/:id", UserController, :delete
     get "/users/:id", UserController, :show
-    post "/users/generate_api_token", UserController, :generate_api_token
     post "/users/:id/set_admin", UserController, :set_admin
 
     get "/organisation/edit", OrganisationController, :edit
