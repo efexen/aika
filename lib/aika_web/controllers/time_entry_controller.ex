@@ -27,4 +27,15 @@ defmodule AikaWeb.TimeEntryController do
     end
   end
 
+  def weekly_entries(conn, _) do
+    user = conn.assigns[:user]
+
+    weekly_totals = Timesheets.weekly_totals_for(user)
+
+    json conn, %{
+      target: user.organisation.target_hours,
+      weeks: weekly_totals
+    }
+  end
+
 end

@@ -13,6 +13,14 @@ defmodule Aika.Timesheets.Queries do
     from te in Ecto.assoc(user, :time_entries)
   end
 
+  def weekly_sums(time_entries) do
+    from te in time_entries,
+      select: [
+        fragment("EXTRACT(WEEK FROM date) as week"), sum(te.duration)
+      ],
+      group_by: fragment("week")
+  end
+
   def overview_stats_for(org, start_date, end_date) do
     from te in TimeEntry,
       join: u in User,
