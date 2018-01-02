@@ -81,7 +81,6 @@ defmodule AikaWeb.DashboardView do
       0.0 ->
         0
       duration ->
-        IO.inspect duration
         duration / target_hours
     end
 
