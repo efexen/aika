@@ -38,7 +38,10 @@ defmodule AikaWeb.DashboardView do
   end
 
   def formatted_duration(time) do
-    time / 60
+    (time / 60)
+    |> Decimal.new
+    |> Decimal.round(2)
+    |> Decimal.to_float
   end
 
   def week_title(date) do
