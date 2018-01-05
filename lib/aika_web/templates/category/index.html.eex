@@ -1,0 +1,28 @@
+<h3><%= @organisation.name %> Categories</h3>
+
+<table class="table table-striped">
+  <thead>
+    <th>Name</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= for category <- @categories do %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%= link "Delete", to: category_path(@conn, :delete, category), method: :delete, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col">
+    <%= form_for @conn, category_path(@conn, :create), [as: :category, class: "form-inline"], fn f -> %>
+      <%= text_input f, :name, class: "form-control form-control-sm", placeholder: "New Category" %>
+      &nbsp;
+      <%= submit "Add", class: "btn btn-outline-success btn-sm" %>
+    <% end %>
+  </div>
+</div>
