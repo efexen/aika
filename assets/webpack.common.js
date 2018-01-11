@@ -49,7 +49,11 @@ module.exports = {
   },
 
   resolve: {
-    modules: ["node_modules", __dirname + "/web/static/js"]
+    modules: ["node_modules", __dirname + "/web/static/js"],
+
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
 
   plugins: [

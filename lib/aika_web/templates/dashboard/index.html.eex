@@ -1,3 +1,17 @@
+<div id="trackerContainer" class="tracker-container" v-if="weeklyHours.weeks">
+
+    <div class="week-number" v-for="weekNum in 52" :class="getCssClasses(weekNum)">
+
+      <a :href="generateUrl(weekNum)" v-cloak>
+        {{ padNumber(weekNum) }}
+      </a>
+
+      <div class="current-week" v-if="weekNum === currentWeek"></div>
+
+    </div>
+
+</div>
+
 <h3>
   <%= link "<", to: dashboard_path(@conn, :index, date: previous_week(@date)) %>
   <%= week_title(@date) %>
