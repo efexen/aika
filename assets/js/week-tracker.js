@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import moment from 'moment';
+import urlParams from './helpers/url_parse';
 
 const app = new Vue({
   el: '#trackerContainer',
@@ -14,12 +15,12 @@ const app = new Vue({
 
   computed: {
     displayedWeek() {
-      const urlDate = window.location.search.split('=')[1];
+      const date = urlParams().date;
 
-      if (urlDate === undefined) {
+      if (date === undefined) {
         return moment().week();
       } else {
-        return moment(urlDate).week();
+        return moment(date).week();
       }
     },
     currentWeek() {
