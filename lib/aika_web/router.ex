@@ -37,6 +37,7 @@ defmodule AikaWeb.Router do
 
     pipe_through :authenticated
     get "/dashboard", DashboardController, :index
+    get "/entries/weekly", TimeEntryController, :weekly_entries
 
     post "/entries/:date", TimeEntryController, :create
     post "/users/generate_api_token", UserController, :generate_api_token

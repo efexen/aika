@@ -1,0 +1,56 @@
+$a-tags: 'a, a:active, a:hover, a:visited';
+
+[v-cloak] {
+  display: none;
+}
+
+.tracker-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+
+  .week-number {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.empty {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    &.incomplete {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    &.complete {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    &.active {
+      border: 2px solid $brand-colour;
+    }
+
+    #{$a-tags} {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .current-week {
+    position: absolute;
+    bottom: -5px;
+    width: 16px;
+    height: 2px;
+    background-color: $brand-colour;
+  }
+}

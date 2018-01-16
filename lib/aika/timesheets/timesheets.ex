@@ -18,6 +18,18 @@ defmodule Aika.Timesheets do
     |> Repo.all()
   end
 
+  def weekly_totals_for(user) do
+    start_date = Timex.today() |> Timex.beginning_of_year()
+    end_date = Timex.today() |> Timex.end_of_year()
+
+    user
+    |> Queries.time_entries_for_user()
+    |> Queries.time_entries_between(start_date, end_date)
+    |> Queries.weekly_sums()
+    |> Repo.all()
+    |> Enum.reduce(%{}, &format_weekly_total/2)
+  end
+
   def overview_stats_for(org, start_date, end_date) do
     org
     |> Queries.overview_stats_for(start_date, end_date)
@@ -33,6 +45,10 @@ defmodule Aika.Timesheets do
     if entry.user_id == user.id do
       Repo.delete(entry)
     end
+  end
+
+  defp format_weekly_total([week, total], acc) do
+    Map.put(acc, round(week), total)
   end
 
   defp parse_date(date) do
