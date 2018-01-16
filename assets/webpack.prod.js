@@ -14,6 +14,11 @@ module.exports = Merge(Common, {
       asset: "[path].gz[query]",
       algorithm: "gzip",
       test: /\.(js|html|css)$/
+    }),
+    new Webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     })
   ]
 });
