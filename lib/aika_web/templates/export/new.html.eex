@@ -1,0 +1,9 @@
+<h3>Export entries</h3>
+
+<%= form_for @conn, export_path(@conn, :export), [as: :export], fn f -> %>
+  <div class="form-group">
+    <%= select f, :month, months() %>
+    <%= select f, :year, years() %>
+  </div>
+  <%= submit "Export", class: "btn btn-primary" %>
+<% end %>

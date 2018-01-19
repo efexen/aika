@@ -22,12 +22,22 @@ defmodule Aika.Timesheets.Queries do
   end
 
   def overview_stats_for(org, start_date, end_date) do
+    from te in org_entries(org, start_date, end_date),
+      group_by: [te.user_id, te.date],
+      select: {te.date, te.user_id, sum(te.duration)}
+  end
+
+  def time_entries_for_org(org, start_date, end_date) do
+    from e in org_entries(org, start_date, end_date),
+      order_by: [e.user_id, e.date],
+      preload: [:user]
+  end
+
+  defp org_entries(org, start_date, end_date) do
     from te in TimeEntry,
       join: u in User,
       on: te.user_id == u.id,
-      where: u.organisation_id == ^org.id and te.date >= ^start_date and te.date <= ^end_date,
-      group_by: [te.user_id, te.date],
-      select: {te.date, te.user_id, sum(te.duration)}
+      where: u.organisation_id == ^org.id and te.date >= ^start_date and te.date <= ^end_date
   end
 
 end
