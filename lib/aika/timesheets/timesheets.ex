@@ -39,6 +39,15 @@ defmodule Aika.Timesheets do
     end)
   end
 
+  def export_for(org, {month, year}) do
+    start_date = Timex.beginning_of_month(year, month)
+    end_date = Timex.end_of_month(year, month)
+
+    org
+    |> Queries.time_entries_for_org(start_date, end_date)
+    |> Repo.all()
+  end
+
   def remove(user, id) do
     entry = Repo.get(TimeEntry, id)
 

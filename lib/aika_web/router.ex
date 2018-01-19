@@ -55,6 +55,9 @@ defmodule AikaWeb.Router do
     resources "/organisation", OrganisationController, only: [:update]
 
     get "/overview", DashboardController, :overview
+
+    get "/export", ExportController, :new
+    post "/export", ExportController, :export
   end
 
   scope "/api", AikaWeb do
