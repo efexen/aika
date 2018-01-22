@@ -57,7 +57,7 @@ const app = new Vue({
       return {
         'empty': hours === 0 && notFuture,
         'incomplete': hours > 0 && hours < target,
-        'complete': hours > target,
+        'complete': hours >= target,
         'active': weekNum === this.displayedWeek
       };
     }
